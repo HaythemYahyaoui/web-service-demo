@@ -8,7 +8,7 @@ public class LanguageNotFoundException extends Exception {
 	private static final long serialVersionUID = 2835349257090817964L;
 
 	public LanguageNotFoundException() {
-		super("User not found");
+		super("Language not found");
 		// TODO Auto-generated constructor stub
 	}
 

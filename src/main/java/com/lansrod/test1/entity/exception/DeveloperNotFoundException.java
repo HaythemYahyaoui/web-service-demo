@@ -8,7 +8,7 @@ public class DeveloperNotFoundException extends Exception {
 	private static final long serialVersionUID = 2835349257090817964L;
 
 	public DeveloperNotFoundException() {
-		super("User not found");
+		super("Developer not found");
 		// TODO Auto-generated constructor stub
 	}
 
