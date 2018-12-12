@@ -54,4 +54,9 @@ public class DeveloperBusiness implements IDeveloperBusiness {
 		this.update(developer.getId(), developer);
 	}
 
+	@Override
+	public Iterable<Developer> getDeveloperByLanguage(Long languageId) throws LanguageNotFoundException {
+		return developerRepository.findByLanguageId(languageId);
+	}
+
 }

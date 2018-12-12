@@ -17,4 +17,6 @@ public interface IDeveloperBusiness {
 	public void setLanguageToDeveloper(Long idDeveloper, Long idLanguage)
 			throws DeveloperNotFoundException, LanguageNotFoundException;
 
+	public Iterable<Developer> getDeveloperByLanguage(Long idLanguage) throws LanguageNotFoundException;
+
 }

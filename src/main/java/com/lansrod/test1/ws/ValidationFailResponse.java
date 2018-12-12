@@ -17,12 +17,14 @@ public class ValidationFailResponse extends FailResponse {
 	}
 
 	public ValidationFailResponse(Set<ConstraintViolation<?>> constraintViolations) {
+		super(400L);
 		errors = constraintViolations.stream().collect(HashMap<String, String>::new, (a, b) -> {
 			a.put(b.getPropertyPath().toString(), b.getMessage());
 		}, Map::putAll);
 	}
 
 	public ValidationFailResponse(BindingResult bindingResult) {
+		super(400L);
 		errors = bindingResult.getFieldErrors().stream().collect(HashMap<String, String>::new, (a, b) -> {
 			a.put(b.getField(), b.getDefaultMessage());
 		}, Map::putAll);

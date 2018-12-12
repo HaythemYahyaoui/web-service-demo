@@ -25,7 +25,7 @@ public class ExceptionHandlerController {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.body(new FailResponse(404L, developerNotFoundException.getMessage()));
 	}
-	
+
 	@ExceptionHandler({ LanguageNotFoundException.class })
 	public ResponseEntity<AbstractResponse> languageNotFoundException(Locale locale,
 			LanguageNotFoundException languageNotFoundException) {
@@ -36,20 +36,26 @@ public class ExceptionHandlerController {
 	@ExceptionHandler({ MethodArgumentTypeMismatchException.class })
 	public ResponseEntity<AbstractResponse> dethodArgumentTypeMismatchException(Locale locale,
 			MethodArgumentTypeMismatchException dethodArgumentTypeMismatchException) {
-		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(new FailResponse(400L, dethodArgumentTypeMismatchException.getMessage()));
 	}
 
 	@ExceptionHandler({ MethodArgumentNotValidException.class })
 	public ResponseEntity<AbstractResponse> methodArgumentNotValidException(Locale locale,
 			MethodArgumentNotValidException methodArgumentNotValidException) {
-		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(new ValidationFailResponse(methodArgumentNotValidException.getBindingResult()));
 	}
 
 	@ExceptionHandler({ BindException.class })
 	public ResponseEntity<AbstractResponse> bindException(Locale locale, BindException bindException) {
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new FailResponse(400L, bindException.getMessage()));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailResponse(400L, bindException.getMessage()));
+	}
+
+	@ExceptionHandler({ Exception.class })
+	public ResponseEntity<AbstractResponse> exception(Locale locale, Exception exception) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new FailResponse(500L, exception.getMessage()));
 	}
 
 }

@@ -66,5 +66,10 @@ public class DeveloperController {
 		developerBusiness.setLanguageToDeveloper(idDeveloper, idLanguage);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
+	
+	@GetMapping(path = "/language/{idLanguage}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<AbstractResponse> getDeveloperByLanguage(@PathVariable("idLanguage") Long idLanguage) throws LanguageNotFoundException {
+		return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse(developerBusiness.getDeveloperByLanguage(idLanguage)));
+	}
 
 }
