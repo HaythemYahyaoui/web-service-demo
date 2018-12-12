@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.lansrod.test1.entity.exception.DeveloperNotFoundException;
+import com.lansrod.test1.entity.exception.LanguageNotFoundException;
 import com.lansrod.test1.ws.AbstractResponse;
 import com.lansrod.test1.ws.FailResponse;
 import com.lansrod.test1.ws.ValidationFailResponse;
@@ -23,6 +24,13 @@ public class ExceptionHandlerController {
 			DeveloperNotFoundException developerNotFoundException) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.body(new FailResponse(404L, developerNotFoundException.getMessage()));
+	}
+	
+	@ExceptionHandler({ LanguageNotFoundException.class })
+	public ResponseEntity<AbstractResponse> languageNotFoundException(Locale locale,
+			LanguageNotFoundException languageNotFoundException) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.body(new FailResponse(404L, languageNotFoundException.getMessage()));
 	}
 
 	@ExceptionHandler({ MethodArgumentTypeMismatchException.class })
